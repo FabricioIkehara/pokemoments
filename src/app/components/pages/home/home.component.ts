@@ -11,9 +11,12 @@ import { environment } from '../../../../environments/environment';
 })
 export class HomeComponent implements OnInit {
 
-  allMoments: Moment[] = []
-  moments: Moment[] = []
-  baseApiUrl = environment.baseApiUrl
+  allMoments: Moment[] = [];
+  moments: Moment[] = [];
+  baseApiUrl = environment.baseApiUrl;
+
+  faSearch = faSearch;
+  searchTerm: string = ''
 
   constructor(private momentService: MomentService) {}
 
@@ -34,4 +37,16 @@ export class HomeComponent implements OnInit {
     });
 
   }
+
+  search(e: Event): void {
+    const target = e.target as HTMLInputElement;
+    const value = target.value;
+
+    this.moments = this.allMoments.filter((moment) => {
+      return moment.title.toLowerCase().includes(value);
+    });
+  }
+
 }
+
+

@@ -14,12 +14,17 @@ import { Moment } from '../Moment';
 })
 export class MomentService {
   private baseApiUrl = environment.baseApiUrl;
-  private apiUrl = '${this.baseApiUrl}api/moments'
+  private apiUrl = `${this.baseApiUrl}api/moments`;
 
   constructor(private http: HttpClient) { }
 
   getMoments():Observable<Response<Moment[]>> {
-    return this.http.get<Response<Moment[]>>(this.apiUrl)
+    return this.http.get<Response<Moment[]>>(this.apiUrl);
+  }
+
+  getMoment(id: Number):Observable<Response<Moment>> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Response<Moment>>(url);
   }
 
   createMoment(formData: FormData): Observable<FormData>{
