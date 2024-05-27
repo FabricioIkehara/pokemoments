@@ -3,7 +3,8 @@
     Editando Pokemoment  <span>{{ moment.title }}</span
       >!
   </h2>
-  <app-moment-form (onSubmit)="eventHandler($event)"
+  <app-moment-form 
+  (onSubmit)="eventHandler($event)"
   [momentData]="moment"
   [btntext]="btnText"></app-moment-form>
 </div>
